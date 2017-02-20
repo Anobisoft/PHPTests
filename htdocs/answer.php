@@ -38,7 +38,7 @@
 <?php
   for ($i = 0; $i < $vrcnt; $i++) {
     echo '      <input type="checkbox" name="correct', $i, '" />';
-    echo "Вариант ответа ", $i+1, "<br>\n", '      <textarea name="answer', $i, '" cols="50", rows="2" required></textarea><br>', "\n";
+    echo "Вариант ответа ", $i+1, "<br>\n", '      <textarea name="answer', $i, '" cols="100", rows="4" required></textarea><br>', "\n";
   }
 
 ?>

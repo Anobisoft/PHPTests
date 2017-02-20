@@ -15,15 +15,14 @@ function check() {
       if (document.forms[j].elements[i].checked) checked = true;
     }
     correct += allright;
-    var formj = document.getElementsByTagName('form')[j];
-    var p = formj.getElementsByTagName('p')[0];
-    if (checked) p.innerHTML = allright ? '<font color="#00AA00">Верно</font>' : '<font color="#DD0000">Неверно</font>';
-    else p.innerHTML = 'Вариант не выбран';
+    var res = document.getElementById('result'+j);
+    if (checked) res.innerHTML = allright ? '<font color="#00AA00">Верно</font>' : '<font color="#DD0000">Неверно</font>';
+    else res.innerHTML = 'Вариант не выбран';
   }
  
   g = Math.round(correct * 100 / j);
-  p = document.body.getElementsByTagName('p')[j];
-  p.innerHTML = 'Всего вопросов: ' + j + '<br>Правильных ответов: ' + correct + ', что составляет ' + g + '%';
+  stat = document.getElementById('stats');
+  stat.innerHTML = 'Всего вопросов: ' + j + '<br>Правильных ответов: ' + correct + ', что составляет ' + g + '%';
  
   alert('Вы правильно ответили на ' + correct + ' вопросов из ' + j);
 
@@ -77,7 +76,7 @@ function check() {
       $rowq = $resultq->fetch_array(MYSQLI_ASSOC);
       $quest = $rowq["qtext"];
       $qid = $rowq["id"];
-      echo "  $i.", " $quest<br>\n";
+      echo "  ", $i+1, ". $quest<br>\n";
       echo '  <form name="q', $i, '">', "\n";
       if ($result = $mysqli->query("SELECT atext, correct FROM answer WHERE questid=$qid")) {
         $cnt = $result->num_rows;
@@ -98,7 +97,7 @@ function check() {
         }
         $result->close();
       }   
-      echo "    <p></p>\n  </form>\n";
+      echo "    <div id=\"result$i\"></div>\n  </form>\n";
 
     }
     $resultq->close();
@@ -110,7 +109,7 @@ function check() {
   <form name="checkBtn">
     <input type="button" value="Проверка" onClick="check()">
   </form>
-  <p></p>
-
+  <div id="stats"></div>
+  <a href="index.php">Домой</a>
   </body>
 </html>

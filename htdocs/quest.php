@@ -61,7 +61,7 @@
 
 ?>
       Вопрос<br>
-      <textarea name="question" required cols=50 rows=5></textarea><br>
+      <textarea name="question" required cols=100 rows=20></textarea><br>
 <?php
       echo "      Введите количество вариантов ответов (от 2 до $maxv)<br>\n";
       echo '      <input name="vr" type="range" min="2" max="', $maxv, '" value="', $maxv / 2, '" oninput="vrcnt.value = vr.valueAsNumber" />', "\n";
